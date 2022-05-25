@@ -1,0 +1,7 @@
+START:./youtube_vids/classical_music.mp4:1637359524.029414
+START:./youtube_vids/classical_music.mp4:1637366167.460897
+FINISH:./youtube_vids/classical_music.mp4:1637377823.4217181
+START:./youtube_vids/cooking.mp4:1637378168.306473
+FINISH:./youtube_vids/cooking.mp4:1637381771.229892
+START:./youtube_vids/crowd_talking.mp4:1637381827.5131812
+FINISH:./youtube_vids/crowd_talking.mp4:1637417827.1345057

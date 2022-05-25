@@ -1,0 +1,76 @@
+*.pt
+*.pth
+*/Log
+
+#Video and python environment ignores
+Mute_Button/*
+*.mp4
+*.mkv
+*.flac
+
+scripts/data_collection/Windows/*.txt
+UserStudy/csv_parser_script.py
+
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+data/
+sts-2.1.2/
+scripts/__pycache__/
+__pycache__/
+nist_test_results/*
+figures/
+src/Moonshine
+new_work/
+.DS_Store
+*/tmp

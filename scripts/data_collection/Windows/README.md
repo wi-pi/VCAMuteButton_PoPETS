@@ -1,0 +1,19 @@
+# Play the videos for Webex.
+
+This script will automatically play a video at the start of the minute intervals that Webex uses.
+There is no good way to predict where exactly a video finishes within the time interval.
+Therefore, we need to log when the video starts and ends.
+We also want to have a forced waiting period where we retrieve the time of the last sent packet and wait for Webex to send out another packet after the last one.
+The code then starts playing the video as soon as it registers that a packet has been sent out after a waiting period.
+This way we do not have any overlapping data points.
+Our method also ensures that we can capture the maximum amount of data that we can per session.
+
+# How to run the script
+
+Once you have installed everything, you can run the script as so,
+
+``` python3 play_video_script.py --vlc_path <path to vlc library (optional)> --log_file <path to log file> --videos_dir <path to directory containing videos> --seen_before <path to tracker file which manages which videos to play.>```
+
+An example command is,
+
+``` python3 play_video_script.py --log_file ./log.txt --videos_dir  ../../../datasets/video_data_example --seen_before ./played_vids.txt```

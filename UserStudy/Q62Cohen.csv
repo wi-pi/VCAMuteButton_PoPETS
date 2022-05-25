@@ -1,0 +1,31 @@
+﻿Code 1,Code 2,Code 1Y,Code 2Y
+generic,,generic,
+MicToApp,Cut,MicToApp,Cut
+Visual/UI,,Visual/UI,
+generic,,generic,
+block sending,,block sending,
+block sending,,generic,
+Visual/UI,,Visual/UI,
+disable,,disable,
+block sending,,block sending,
+generic,,generic,
+block sending,,block sending,
+block sending,Cut,block sending,Cut
+block sending,,block sending,
+block sending,,block sending,
+block sending,,block sending,
+Visual/UI,suspicious,Visual/UI,suspicious
+block sending,,generic,
+MicToApp,,generic,disable
+block sending,,block sending,
+Visual/UI,,Visual/UI,
+disable,,disable,
+block sending,,block sending,
+block sending,,block sending,
+block sending,correct,block sending,correct
+block sending,,block sending,
+block sending,,block sending,
+generic,,generic,
+disable,block sending,disable,block sending
+generic,,generic,
+disable,MicToApp,disable,MicToApp

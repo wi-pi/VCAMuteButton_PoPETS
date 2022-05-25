@@ -1,0 +1,274 @@
+{
+  "event": {
+    "canProceed": true,
+    "eventData": {
+      "MQ-Event-String": "THIS IS MQ EVENT DATA"
+    },
+    "identifiers": {
+      [redacted]
+    },
+    "intervals": [
+      {
+        "audioReceive": [],
+        "audioTransmit": [
+          {
+            "captureHardwareProvidedAudioPacketsPerSecond": 100,
+            "common": {
+              "availableBitrate": 0,
+              "common": {
+                "direction": "sendrecv",
+                "isMain": true,
+                "mariFecEnabled": true,
+                "mariQosEnabled": true,
+                "multistreamEnabled": true
+              },
+              "dtlsBitrate": 0,
+              "dtlsPackets": 0,
+              "fecBitrate": 0,
+              "fecPackets": 0,
+              "maxBitrate": 64000,
+              "maxRemoteJitter": 11,
+              "maxRemoteLossRate": 0,
+              "maxRoundTripTime": 0,
+              "meanRemoteJitter": 7,
+              "meanRemoteLossRate": 0,
+              "meanRoundTripTime": 0,
+              "queueDelay": 0,
+              "remoteJitter": 11,
+              "remoteLossRate": 0,
+              "remoteReceiveRate": 2272,
+              "roundTripTime": 0,
+              "rtcpBitrate": 0,
+              "rtcpPackets": 0,
+              "rtpBitrate": 2099,
+              "rtpPackets": 143,
+              "rtxBitrate": 0,
+              "rtxPackets": 0,
+              "stunBitrate": 0,
+              "stunPackets": 0,
+              "transportType": "UDP"
+            },
+            "levels": {
+              "audioMaxGain": 51,
+              "audioMaxVolume": 27369,
+              "audioMeanGain": 45,
+              "audioMeanVolume": 27369,
+              "audioMinGain": 14,
+              "audioMinVolume": 27369
+            },
+            "sharedAudioPacketsPerSecond": 0,
+            "streams": []
+          }
+        ],
+        "intervalMetadata": {
+          "appWindowHeight": 720,
+          "appWindowSize": 3600,
+          "appWindowWidth": 1280,
+          "cpuDataDetail": {
+            "coreVariance": 0,
+            "processesData": [
+              {
+                "moduleCpuData": [
+                  {
+                    "cpuUsage": 1.5360000133514404,
+                    "moduleName": "Other",
+                    "threadCount": 27
+                  },
+                  {
+                    "cpuUsage": 0.23399999737739563,
+                    "moduleName": "CPUProfiling",
+                    "threadCount": 1
+                  },
+                  {
+                    "cpuUsage": 0.026000000536441803,
+                    "moduleName": "WME_APPSHARE",
+                    "threadCount": 5
+                  },
+                  {
+                    "cpuUsage": 0.026000000536441803,
+                    "moduleName": "WME_Audio",
+                    "threadCount": 27
+                  },
+                  {
+                    "cpuUsage": 0,
+                    "moduleName": "WME_Video",
+                    "threadCount": 5
+                  },
+                  {
+                    "cpuUsage": 0,
+                    "moduleName": "WME_Other",
+                    "threadCount": 9
+                  }
+                ],
+                "processName": "atmgr.exe",
+                "threadCount": 75,
+                "threadData": [
+                  {
+                    "cpuUsage": 1.5099999904632568,
+                    "threadName": "Other",
+                    "tid": 3600
+                  },
+                  {
+                    "cpuUsage": 0.23399999737739563,
+                    "threadName": "CPUProfiling",
+                    "tid": 6648
+                  },
+                  {
+                    "cpuUsage": 0.026000000536441803,
+                    "threadName": "Other",
+                    "tid": 1224
+                  },
+                  {
+                    "cpuUsage": 0.026000000536441803,
+                    "threadName": "WME_APPSHARE",
+                    "tid": 6108
+                  },
+                  {
+                    "cpuUsage": 0.026000000536441803,
+                    "threadName": "WME_AudioEncode",
+                    "tid": 8028
+                  },
+                  {
+                    "cpuUsage": 0,
+                    "threadName": "WME_Audio",
+                    "tid": 10200
+                  },
+                  {
+                    "cpuUsage": 0,
+                    "threadName": "WME_AudioEng",
+                    "tid": 10084
+                  },
+                  {
+                    "cpuUsage": 0,
+                    "threadName": "Other",
+                    "tid": 10024
+                  },
+                  {
+                    "cpuUsage": 0,
+                    "threadName": "Other",
+                    "tid": 9944
+                  },
+                  {
+                    "cpuUsage": 0,
+                    "threadName": "WME_Video",
+                    "tid": 9940
+                  }
+                ],
+                "uiThreadData": {
+                  "cpuUsage": 0.10400000214576721,
+                  "delay": 0,
+                  "threadName": "mainthread",
+                  "tid": 4080
+                }
+              }
+            ]
+          },
+          "cpuInfo": {
+            "architecture": "amd64",
+            "clockSpeedGigaHertz": 3693,
+            "description": "AMD Ryzen 7 2700X Eight-Core Processor         ",
+            "numberOfCores": 8
+          },
+          "defaultGpuInfo": {
+            "description": "NVIDIA GeForce GT 610",
+            "memoryMegaBytes": 979
+          },
+          "mediaLabels": [
+            "FecForRtxAudioOn",
+            "FecForRtxAudioActive"
+          ],
+          "memoryUsage": {
+            "cpuBitWidth": 64,
+            "mainProcessMaximumMemoryBytes": 327000,
+            "osBitWidth": 64,
+            "processAverageMemoryUsage": 0,
+            "processMaximumMemoryBytes": 377112,
+            "processMaximumMemoryUsage": 0,
+            "systemAverageMemoryUsage": 10,
+            "systemMaximumMemoryUsage": 11
+          },
+          "otherGpuInfo": [
+            {
+              "description": "Microsoft Basic Render Driver",
+              "memoryMegaBytes": 4095
+            }
+          ],
+          "peerReflexiveIP": [redacted],
+          "peripherals": [
+            {
+              "information": "Microphone (USB Audio Device)inition Audio)",
+              "name": "microphone"
+            },
+            {
+              "information": "SyncMaster-4 (NVIDIA High Definition Audio)",
+              "name": "speaker"
+            }
+          ],
+          "processAverageCPU": 0,
+          "processMaximumCPU": 0,
+          "screenResolution": 8160,
+          "systemAverageCPU": 2,
+          "systemMaximumCPU": 7
+        },
+        "intervalNumber": 7,
+        "videoReceive": [],
+        "videoTransmit": []
+      }
+    ],
+    "name": "client.mediaquality.event",
+    "sourceMetadata": {
+      "applicationSoftwareType": "windows meetings client",
+      "applicationSoftwareVersion": "1.0",
+      "endTime": "2021-11-24T17:02:51.668Z",
+      "hardwareType": "To Be Filled By O.E.M.",
+      "mediaEngineSoftwareType": "wme",
+      "mediaEngineSoftwareVersion": "1.0",
+      "startTime": "2021-11-24T17:02:51.668Z"
+    },
+    "trigger": "media-quality",
+    "webexServiceType": "MC",
+    "webexSubServiceType": "PMR"
+  },
+  "eventId": "B2B23664-A218-470e-BE97-425EE5DE6CBE",
+  "origin": {
+    "buildType": "prod",
+    "clientInfo": {
+      "CDNEnabled": false,
+      "browser": "Teams",
+      "browserVersion": "41.11.0.20606",
+      "clientDownloadFileCount": 0,
+      "clientDownloadSize": 0,
+      "clientType": "MEETING_CENTER",
+      "clientVersion": "41.12.3.11",
+      "fastJoinUsed": false,
+      "gatewayIP":  [redacted],
+      "is64BitsClient": false,
+      "isValidClientVersion": false,
+      "localClientVersion": "41.12.3.11",
+      "localIP":  [redacted],
+      "localNetworkPrefix":  [redacted],
+      "nodeId": 0,
+      "os": "windows",
+      "osVersion": "10.0.19041",
+      "parentAppInWhiteList": false,
+      "prefetchDocShowUsed": false,
+      "publicNetworkPrefix":  [redacted],
+      "standbyUsed": false,
+      "subClientType": "DESKTOP_APP",
+      "videoDisplayMode": "grid-view",
+      "videoLayoutType": "grid",
+      "videoRenderType": "wme"
+    },
+    "environment": "lab_env",
+    "instanceId": "media-agent-instance-id-31dfe6e4",
+    "mediaEngineSoftwareVersion": "1.2.4",
+    "name": "endpoint",
+    "networkType": "ethernet",
+    "userAgent": "media-agent/1.2.3.4"
+  },
+  "originTime": {
+    "sent": "2021-11-24T17:02:51.668Z",
+    "triggered": "2021-11-24T17:02:51.668Z"
+  },
+  "version": 1
+}

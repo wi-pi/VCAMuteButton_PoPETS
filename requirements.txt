@@ -1,0 +1,16 @@
+argparse
+python-vlc
+pafy
+torch
+matplotlib
+pyaudio
+pydub
+librosa
+numpy
+requests
+pandas
+scipy
+seaborn
+sklearn
+youtube_dl
+sh
