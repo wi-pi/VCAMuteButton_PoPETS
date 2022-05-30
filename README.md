@@ -12,6 +12,7 @@ Tools needed to run the code:
     - GCC
     - Python3
     - make 
+    - portaudio19-dev
 
 
 ## Virtual Environment Setup
@@ -24,7 +25,7 @@ For those interested in using a virtual environment, the instructions are as fol
     
 ```bash 
 #First create the environment in the root directory. 
-> python3 -m venv Mute_button
+> python3 -m venv Mute_Button
 
 #Then run this command
 > source Mute_Button/bin/activate
@@ -42,7 +43,7 @@ Windows has a slightly different process, to access instructions for the same pr
 The virtual environment will create a `Mute_Button` folder which will be about `2 GBs`.
 
 
-## Componenets
+## Componets
 Here is a brief description of the subdirectories in this repository.
 
 - `UserStudy`: full user study analysis script and user study results of all valid participants, coded answers by two researchers, and user study questionnaire details.
