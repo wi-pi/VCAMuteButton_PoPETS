@@ -1,6 +1,8 @@
 # UserStudy Survey and Analysis
 
-This folder contains user study responses from recruited participants from Prolific. For multi-option questions, we presented the distribution of selected answers. For open-ended questions, two researchers independently coded the answers and we presented the distribution of answers in coded form. We used Cohen's kappa coefficients to measure the reliability of our Codec. Running `main.py` analyzes all user study responses and generates histogram graphs for our paper. Running `cohen_kappa.py` gives the cohen's kappa coefficients for 3 open-ended questions in our user study. 
+This folder contains user study responses from recruited participants from Prolific. 
+For multi-option questions, we presented the distribution of selected answers. For open-ended questions, two researchers independently coded the answers and we presented the distribution of answers in coded form. 
+We used Cohen's kappa coefficients to measure the reliability of our Codec. Running `main.py` analyzes all user study responses and generates histogram graphs for our paper. Running `cohen_kappa.py` gives the cohen's kappa coefficients for 3 open-ended questions in our user study. 
 
 # csv file explanation
 
@@ -17,5 +19,5 @@ This folder contains user study responses from recruited participants from Proli
 
 # py files explanation
 
--`cohen_kappa.py` for calculating Cohen's kappa coefficients, which is used to measure inter-rater reliability.
--`main.py`: sanitizing user_study_total.csv file and draw plots fo each question.
+- `cohen_kappa.py` for calculating Cohen's kappa coefficients, which is used to measure inter-rater reliability.
+- `main.py`: sanitizing user_study_total.csv file and draw plots fo each question.
