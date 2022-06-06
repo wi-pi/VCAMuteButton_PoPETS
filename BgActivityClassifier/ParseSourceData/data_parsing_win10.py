@@ -10,7 +10,7 @@ def processing(mname):
     max0, min0, mean0, max1, min1, mean1, max2, min2, mean2, max3, min3, mean3, max4, min4, mean4 = ([] for i in range(15))
     max5,min5,mean5,max6,min6,mean6=([]for i in range(6))
 
-    with open('bgActivity_clean.txt','r') as f:
+    with open(mname+'.txt','r') as f:
         filelines = f.readlines()
         for ind,line in enumerate(filelines):
             label = -1
@@ -111,7 +111,7 @@ def processing(mname):
                     min_line.append(int(min3[i+j]))
                     mean_line.append(int(mean3[i+j]))
                 data.append([np.asarray([max_line,mean_line, min_line],np.float32),3])
-         if len(max4) == len(mean4) and len(mean4)==len(min4):
+        if len(max4) == len(mean4) and len(mean4)==len(min4):
             for i in range(len(max4)-9):
                 max_line = []
                 mean_line = []

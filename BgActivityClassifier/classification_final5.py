@@ -13,7 +13,8 @@ from sklearn.metrics import accuracy_score
 
 
 print(T.cuda.is_available())
-device = T.device("cuda")
+# TODO: if you have gpu resources, please use 'cuda' instead
+device = T.device("cpu:0")
 
 class AudioDataset(T.utils.data.Dataset):
   # Max Mean Min Label
@@ -126,6 +127,7 @@ class Net(T.nn.Module):
 
     self.hid2 = T.nn.Linear(35, 35)
     self.oupt = T.nn.Linear(35, 6)
+    
     # self.conv1 = T.nn.Conv1d(in_channels=3, out_channels=3, kernel_size=2, stride=1)
     # self.act1 = T.nn.ReLU()
     # self.hid1 = T.nn.Linear(12, 20)  # 6-(10-10)-3
@@ -189,6 +191,7 @@ def main():
   # temp replacing 50 vol with 100cm
   # data_ova_100cm
   # TODO: change pkl file name
+  # for example, old_data_10cm_7_final.pkl for win=7
   with open('ParsedData/old_data_10cm_5_final.pkl','rb') as f:
     ova_test = pickle.load(f)
   with open('ParsedData/old_data_25cm_5_final.pkl','rb') as f:
@@ -207,6 +210,7 @@ def main():
 #-------------------------------------
 
   # Evaluation set 2
+  # TODO: change pkl file name
   with open('ParsedData/old_data_100cm_5_final.pkl','rb') as f:
     ova_test1 = pickle.load(f)
   OVA_testset_eval2 = np.asarray(ova_test1,dtype=object)
@@ -223,7 +227,7 @@ def main():
 
   # 3. train model
   max_epochs = 700
-  ep_log_interval = 700
+  ep_log_interval = 100
   lrn_rate = 0.001
  
   loss_func = T.nn.CrossEntropyLoss()  # apply log-softmax()
