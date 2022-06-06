@@ -442,7 +442,8 @@ def main():
   print(confusion_matrix(true_y,predict_y, normalize = 'true'))
   savefile = [vald1cm,eval1cm,eval2cm]
   # save for confusion matrix
-  with open('cm_save_final_win5.pkl','wb') as f:
+  
+  with open(f'cm_save_final_win{window_size}.pkl','wb') as f:
     pickle.dump(savefile, f)
  
 
