@@ -1,9 +1,14 @@
 import os
 import numpy as np
 import pickle
+import argparse
 
+parser = argparse.ArgumentParser()
+parser.add_argument("--window_size", help="Set the window size.",nargs='?',const=5, type=int,default=5)
+args = parser.parse_args()
+window_size = args.window_size
 
-def processing(mname):
+def processing(mname,window_size=5):
     data = []
     n=0
     n_n=0
@@ -34,7 +39,7 @@ def processing(mname):
                     # print(max0)
                     mean0 = mean0+mean_list
                     min0 = min0+min_list
-                elif "cooking" in line:
+                elif "cooking" in line or "eating" in line:
                     label = 1
                     max1 = max1+max_list
                     mean1 = mean1+mean_list
@@ -54,13 +59,8 @@ def processing(mname):
                     max4 = max4+max_list
                     mean4 = mean4+mean_list
                     min4 = min4+min_list
-                elif "punk_music" in line:
+                elif "vaccume" in line or "cleaning" in line:
                     label = 5
-                    max5 = max5+max_list
-                    mean5 = mean5+mean_list
-                    min5 = min5+min_list
-                elif "vaccume" in line:
-                    label = 6
                     max6 = max6+max_list
                     mean6 = mean6+mean_list
                     min6 = min6+min_list
@@ -72,85 +72,74 @@ def processing(mname):
     rate=1
     try:
         if len(max0) == len(mean0) and len(mean0)==len(min0):
-            for i in range(len(max0)-9):
+            for i in range(len(max0)-(window_size-1)):
                 max_line = []
                 mean_line = []
                 min_line = []
-                for j in range(10):
+                for j in range(window_size):
                     max_line.append(int(max0[i+j]))
                     min_line.append(int(min0[i+j]))
                     mean_line.append(int(mean0[i+j]))
                 data.append([np.asarray([max_line,mean_line, min_line],np.float32),0])
         if len(max1) == len(mean1) and len(mean1)==len(min1):
-            for i in range(len(max1)-9):
+            for i in range(len(max1)-(window_size-1)):
                 max_line = []
                 mean_line = []
                 min_line = []
-                for j in range(10):
+                for j in range(window_size):
                     max_line.append(int(max1[i+j]))
                     min_line.append(int(min1[i+j]))
                     mean_line.append(int(mean1[i+j]))
                 data.append([np.asarray([max_line,mean_line, min_line],np.float32),1])
         if len(max2) == len(mean2) and len(mean2)==len(min2):
-            for i in range(len(max2)-9):
+            for i in range(len(max2)-(window_size-1)):
                 max_line = []
                 mean_line = []
                 min_line = []
-                for j in range(10):
+                for j in range(window_size):
                     max_line.append(int(max2[i+j]))
                     min_line.append(int(min2[i+j]))
                     mean_line.append(int(mean2[i+j]))
                 data.append([np.asarray([max_line,mean_line, min_line],np.float32),2])
         if len(max3) == len(mean3) and len(mean3)==len(min3):
-            for i in range(len(max3)-9):
+            for i in range(len(max3)-(window_size-1)):
                 max_line = []
                 mean_line = []
                 min_line = []
-                for j in range(10):
+                for j in range(window_size):
                     max_line.append(int(max3[i+j]))
                     min_line.append(int(min3[i+j]))
                     mean_line.append(int(mean3[i+j]))
                 data.append([np.asarray([max_line,mean_line, min_line],np.float32),3])
         if len(max4) == len(mean4) and len(mean4)==len(min4):
-            for i in range(len(max4)-9):
+            for i in range(len(max4)-(window_size-1)):
                 max_line = []
                 mean_line = []
                 min_line = []
-                for j in range(10):
+                for j in range(window_size):
                     max_line.append(int(max4[i+j]))
                     min_line.append(int(min4[i+j]))
                     mean_line.append(int(mean4[i+j]))
                 data.append([np.asarray([max_line,mean_line, min_line],np.float32),4])
-        if len(max5) == len(mean5) and len(mean5)==len(min5):
-            for i in range(len(max5)-9):
+            for i in range(len(max6)-(window_size-1)):
                 max_line = []
                 mean_line = []
                 min_line = []
-                for j in range(10):
-                    max_line.append(int(max5[i+j]))
-                    min_line.append(int(min5[i+j]))
-                    mean_line.append(int(mean5[i+j]))
-                data.append([np.asarray([max_line,mean_line, min_line],np.float32),5])
-        if len(max6) == len(mean6) and len(mean6)==len(min6):
-            for i in range(len(max6)-9):
-                max_line = []
-                mean_line = []
-                min_line = []
-                for j in range(10):
+                for j in range(window_size):
                     max_line.append(int(max6[i+j]))
                     min_line.append(int(min6[i+j]))
                     mean_line.append(int(mean6[i+j]))
-                data.append([np.asarray([max_line,mean_line, min_line],np.float32),6])
+                data.append([np.asarray([max_line,mean_line, min_line],np.float32),5])
 
     except:
         print("error")
         print(ind)
 
-    # test augmentation for better classification, not used
-    # for sample in data:
-    #     sample[0][0]=sample[0][0]*1
-    #     sample[0][1]=sample[0][1]*1.414
-    #     sample[0][2]=sample[0][2]*2
+    # test augmentation
+    for sample in data:
+        sample[0][0]=sample[0][0]*1
+        sample[0][1]=sample[0][1]*1
+        sample[0][2]=sample[0][2]*1
 
 
     n1=n2=n3=n4=n0=n5=n6=0
@@ -179,12 +168,71 @@ def processing(mname):
     print(n6)
     print(n_n)
 
-    with open(mname+'_10_final.pkl','wb') as f:
+    with open(mname+f'_{window_size}_final.pkl','wb') as f:
         pickle.dump(data, f)
 
 def main():
     name = ['new_data_10cm','new_data_25cm','new_data_50cm','old_data_10cm','old_data_25cm','old_data_50cm','old_data_100cm']
     for mname in name:
         print(mname)
-        processing(mname)
+        processing(mname,window_size)
 main()
+
+# ova_train_10cm
+# len data 1646
+# 144
+# 151
+# 623
+# 168
+# 168
+# 169
+# 223
+
+# ova_50cm_testset1
+# len data 1673
+# 159
+# 167
+# 602
+# 172
+# 174
+# 172
+# 227
+
+# ova_081215_testset2 
+# len data 2959
+# 186
+# 54
+# 576
+# 509
+# 1103
+# 83
+# 448
+
+# ova_1mand75vol_testset3
+# len data 4865
+# 370
+# 110
+# 1118
+# 1381
+# 1143
+# 169
+# 574
+
+# OVA_20_NewTrain 10cm and 50cm new videos
+# 159
+# 227
+# 108
+# 344
+# 346
+# 345
+# 454
+
+# OVA_1mand18_Testset
+# len data 4108
+# 334
+# 149
+# 1691
+# 693
+# 582
+# 85
+# 574

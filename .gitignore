@@ -3,6 +3,7 @@
 */Log
 
 BgActivityClassifier/*.pkl
+BgActivityClassifier/ParseSourceData/*.pkl
 
 #Video and python environment ignores
 Mute_Button/*
