@@ -11,19 +11,15 @@ import seaborn as sns
 
 def read_survey_file(survey_file):
     df = pd.read_csv(survey_file)
-    print(df.shape)
     df = df.drop(index=[0, 1])  # dropping header rows as they are not important
     df.drop(columns=['RecipientLastName', 'RecipientFirstName',	'RecipientEmail',	'ExternalReference'], inplace=True)
-    print(df.shape)
     return df
 
 
 def read_survey_file_sanitized(survey_file):
     df = pd.read_csv(survey_file)
-    print(df.shape)
     # df = df.drop(index=[0, 1])  # dropping header rows as they are not important
     # df.drop(columns=['RecipientLastName', 'RecipientFirstName',	'RecipientEmail',	'ExternalReference'], inplace=True)
-    # print(df.shape)
     return df
 
 
@@ -34,9 +30,7 @@ def remove_failed_responses(df):
     print("start", df.shape)
     # remove the first attention checker
     df.dropna(subset=['Q69'], inplace=True)
-    # print(df[~df['Q69'].str.contains('random', flags=re.IGNORECASE, regex=True)]['Q34_turkID'])
     df.drop(df[~df['Q69'].str.contains('random', flags=re.IGNORECASE, regex=True)].index, inplace=True)
-    # print(df[~df['Q114'].str.contains('5')]['Q34_turkID'])
     # remove the second attention checker
     df.dropna(subset=['Q114'], inplace=True)
     df.drop(df[~df['Q114'].str.contains('5')].index, inplace=True)
@@ -47,21 +41,17 @@ def remove_failed_responses(df):
     # (select all that apply)
     # including 4 as of a common sense
     df.drop(df[~df['Q72'].str.contains('4')].index, inplace=True)
-    print(df.shape)
     # remove responses from Q72 that contains 1
     # including 1 meaning not understanding
     df.drop(df[df['Q72'].str.contains('1')].index, inplace=True)
-    print(df.shape)
 
     # remove responses from Q71 that do not 4 in them
     # For your most frequently used video meeting app, when do you think it has access to your microphone?
     # (select all that apply)
     df.drop(df[~df['Q71'].str.contains('4')].index, inplace=True)
 
-    print(df.shape)
     # remove those without privacy questionnaire responses
     df.dropna(subset=['Q107', 'Q108', 'Q109', 'Q110', 'Q111', 'Q112', 'Q113', 'Q116'], inplace=True)
-    print(df.shape)
 
     return df
 
@@ -117,15 +107,15 @@ def analyze_privacy_choice(df):
     print('# who think the app should only access mic when unmuted:\t', df[df['Q72'].str.fullmatch('4')].shape[0])
 
     # possibly no effect of privacy score.
-    print(df[df['Q71'].str.fullmatch('4')]['privacyScore'].mean())
-    print(df[~df['Q71'].str.fullmatch('4')]['privacyScore'].mean())
+    # print(df[df['Q71'].str.fullmatch('4')]['privacyScore'].mean())
+    # print(df[~df['Q71'].str.fullmatch('4')]['privacyScore'].mean())
 
-    # 71 reflect understanding, not privacy attitudes
-    # app should only use in 4 VS. app can use in 3
-    print(df[df['Q72'].str.fullmatch('4')]['privacyScore'].mean())
-    print(df[df['Q72'].str.contains('3')]['privacyScore'].mean())
+    # # 71 reflect understanding, not privacy attitudes
+    # # app should only use in 4 VS. app can use in 3
+    # print(df[df['Q72'].str.fullmatch('4')]['privacyScore'].mean())
+    # print(df[df['Q72'].str.contains('3')]['privacyScore'].mean())
     # print(df[df['Q72'].str.contains('3') and df['Q72'].str.fullmatch('4')]['privacyScore'].mean())
-    print('# applied mute button before', df['Q90'].value_counts())
+    # print('# applied mute button before', df['Q90'].value_counts())
 
     return df
 
@@ -163,7 +153,6 @@ def generic_plot(response, xlabel, ylabel, filename):
     sns.set(rc={'figure.figsize': (6.4, 2.8)})
     sns.set_style("white")
     p = response.plot.barh(colormap='Paired')
-    print(p)
     if xlabel is not None:
         p.set_xlabel(xlabel, fontsize=15)
     if ylabel is not None:
@@ -178,28 +167,29 @@ def generic_plot(response, xlabel, ylabel, filename):
 
     fig = plt.figure()
     size = fig.get_size_inches()  # size in pixels
-    print(size)
 
 
+# collecting_answers is an easy tool for manual labeling answers for our two researchers 
 def collecting_answers(df):
     df["Responses Encoding"] = ""
     for index in df.index:
         print("music: 1  dog_barking: 2 watching TV: 3")
         print("keyboard/typing: 4 cooking: 5  cleaning: 6 calling/talking: 7 ")
         output = (input(df['Q104'][index]))
-        print(output)
         df.at[index, 'Responses Encoding'] = output
         df.to_csv('clean_survey_file_72answers_yc.csv', index=False)
         # df.set_value(index,"Responses Encoding", str(output))
-    print(df.head(10))
 
 
 if __name__ == '__main__':
     sns.set()
-    input_file = 'clean_survey_file_total.csv'
+    # following lines sanitize raw responses from participants, while we removed original responses due to privacy concern
+    # input_file = 'user_study_data_total.csv'
     # data_frame = read_survey_file(input_file)
     # data_frame = remove_failed_responses(data_frame)
     # data_frame = add_privacy_score(data_frame)
+
+    input_file = 'clean_survey_file_total.csv'
     data_frame = read_survey_file_sanitized(input_file)
     analyze_duration(data_frame)
     analyze_privacy_choice(data_frame)

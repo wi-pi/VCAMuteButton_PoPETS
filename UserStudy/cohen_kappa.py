@@ -4,7 +4,6 @@ from sklearn.metrics import cohen_kappa_score
 
 def read_survey_file_sanitized(survey_file):
     df = pd.read_csv(survey_file)
-    print(df.shape)
     return df
 
 
@@ -25,8 +24,6 @@ def cohen_kappa_62(df, code):
             coder_y_score.append(1)
         else:
             coder_y_score.append(0)
-    print(coder_y_score)
-    print(len(coder_y_score))
     return cohen_kappa_score(coder_k_score, coder_y_score)
 
 
@@ -49,8 +46,6 @@ def cohen_kappa_104(df, code):
             coder_y_score.append(1)
         else:
             coder_y_score.append(0)
-    print(coder_y_score)
-    print(len(coder_y_score))
     return cohen_kappa_score(coder_k_score, coder_y_score)
 
 
@@ -68,8 +63,9 @@ def ch_61_result():
             sum += res
         else:
             not_appear += 1
-            print(mcode)
-    print(sum/(len(code_book)-not_appear))
+    print("If yes, why do you use the mute button?")
+    print(', '.join(code_book))
+    print("Cohen's Kappa Coefficients:", sum/(len(code_book)-not_appear))
     # 0.8519763137505689
 
 
@@ -77,12 +73,12 @@ def ch_62_result():
     code_book = ["generic", "MicToApp", "Visual/UI", "block sending", "correct", "Cut", "disable", "suspicious"]
     df_1 = read_survey_file_sanitized('Q62Cohen.csv')
     # df_1.replace(r'^\s*$', "NaN", regex=True)
-    print(df_1)
     sum = 0
     for mcode in code_book:
-        print(mcode)
         sum += cohen_kappa_62(df_1, mcode)
-    print(sum/len(code_book))
+    print("To the best of your ability, please describe what does the app do when you press the mute button.")
+    print(', '.join(code_book))
+    print("Cohen's Kappa Coefficients:", sum/len(code_book))
     # 0.9036384961958074
 
 
@@ -101,8 +97,9 @@ def ch_104_result():
             sum += res
         else:
             not_appear += 1
-            print(mcode)
-    print(sum/(len(code_book)-not_appear))
+    print("What activities do you perform or take place in your background when you are muted (such as cooking, watching Tv, etc.) during a video meeting?")
+    print(', '.join(code_book))
+    print("Cohen's Kappa Coefficients:", sum/(len(code_book)-not_appear))
     # 0.8213622119590166
 
 
