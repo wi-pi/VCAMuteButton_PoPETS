@@ -2,6 +2,8 @@
 *.pth
 */Log
 
+BgActivityClassifier/*.pkl
+
 #Video and python environment ignores
 Mute_Button/*
 *.mp4

@@ -1,6 +1,7 @@
 import os
 import numpy as np
 import time
+import argparse
 import pickle
 import torch as T
 from torch._C import dtype
@@ -10,11 +11,24 @@ from sklearn.metrics import average_precision_score
 from sklearn.metrics import precision_score
 from sklearn.metrics import accuracy_score
 
+parser = argparse.ArgumentParser()
+parser.add_argument("--gpu", help="This flag will enable GPU support.", action='store_true')
+parser.add_argument("--window_size", help="Set the window size.",type=int)
+parser.add_argument("--max_epoch", help="Set max epoch to train. Default value is 700.",nargs='?',const=700, type=int,default=700)
+parser.add_argument("--ep_log_interval", help="Set how frequently a user would like to see the log output. Default value is 100.",nargs='?',const=100, type=int,default=100)
+parser.add_argument("--lrn_rate", help="Set learning rate to train. Default value is 0.001.",const=0.001, nargs='?', type=float,default=0.001)
+args = parser.parse_args()
+window_size = args.window_size
 
+if not os.path.exists("./Log"):
+  os.mkdir("./Log")
 
 print(T.cuda.is_available())
 # TODO: if you have gpu resources, please use 'cuda' instead
-device = T.device("cpu:0")
+if args.gpu:
+  device = T.device("cuda")
+else:
+  device = T.device("cpu:0")
 
 class AudioDataset(T.utils.data.Dataset):
   # Max Mean Min Label
@@ -112,15 +126,18 @@ def accuracy_quick(model, dataset):
 
 # -----------------------------------------------------------
 class Net(T.nn.Module):
-  def __init__(self):
+  def __init__(self,window_size=5):
     super(Net, self).__init__()
     # 3*1
     # make it multiple channels
     self.conv1 = T.nn.Conv1d(in_channels=3, out_channels=6, kernel_size=2, stride=1)
     self.conv2 = T.nn.Conv1d(in_channels=6, out_channels=6, kernel_size=2, stride=1)
-  
+
+    window_size = 6*(window_size-2)
+
     self.act1 = T.nn.ReLU()
-    self.hid1 = T.nn.Linear(18, 35)  
+    self.hid1 = T.nn.Linear(window_size, 35) 
+
     #TODO: replace 18 with 6 for win=3
     # replace 18 with 6*(7-2)=30 for win = 7
     # replace 18 with 6*(10-2)=48 for win = 10
@@ -162,11 +179,12 @@ def main():
   print(device)
   # TODO: replace all following pkl files with corresponding window size files
   # for example, new_data_10cm_7_final.pkl for win=7
-  with open('ParsedData/new_data_10cm_5_final.pkl','rb') as f1:
+
+  with open(f'ParsedData/new_data_10cm_{window_size}_final.pkl','rb') as f1:
     data_list1 = pickle.load(f1)
-  with open('ParsedData/new_data_25cm_5_final.pkl','rb') as f2:
+  with open(f'ParsedData/new_data_25cm_{window_size}_final.pkl','rb') as f2:
     data_list2 = pickle.load(f2)
-  with open('ParsedData/new_data_50cm_5_final.pkl','rb') as f3:
+  with open(f'ParsedData/new_data_50cm_{window_size}_final.pkl','rb') as f3:
     data_list3 = pickle.load(f3)
   data_list = data_list1 + data_list2 + data_list3
 
@@ -192,11 +210,11 @@ def main():
   # data_ova_100cm
   # TODO: change pkl file name
   # for example, old_data_10cm_7_final.pkl for win=7
-  with open('ParsedData/old_data_10cm_5_final.pkl','rb') as f:
+  with open(f'ParsedData/old_data_10cm_{window_size}_final.pkl','rb') as f:
     ova_test = pickle.load(f)
-  with open('ParsedData/old_data_25cm_5_final.pkl','rb') as f:
+  with open(f'ParsedData/old_data_25cm_{window_size}_final.pkl','rb') as f:
     ova_test = ova_test + pickle.load(f)
-  with open('ParsedData/old_data_50cm_5_final.pkl','rb') as f:
+  with open(f'ParsedData/old_data_50cm_{window_size}_final.pkl','rb') as f:
     ova_test = ova_test + pickle.load(f)
   eval1 = np.asarray(ova_test,dtype=object)
   print("Evaluation set 1 shape",eval1.shape)
@@ -211,7 +229,7 @@ def main():
 
   # Evaluation set 2
   # TODO: change pkl file name
-  with open('ParsedData/old_data_100cm_5_final.pkl','rb') as f:
+  with open(f'ParsedData/old_data_100cm_{window_size}_final.pkl','rb') as f:
     ova_test1 = pickle.load(f)
   OVA_testset_eval2 = np.asarray(ova_test1,dtype=object)
   # tmp = np.concatenate((eval1, OVA_testset_eval2), axis=0)
@@ -223,12 +241,12 @@ def main():
   train_ldr = T.utils.data.DataLoader(train_ds,batch_size=bat_size, shuffle=True)
 
   # 2. create network
-  net = Net().to(device)
+  net = Net(window_size=args.window_size).to(device)
 
   # 3. train model
-  max_epochs = 700
-  ep_log_interval = 100
-  lrn_rate = 0.001
+  max_epochs = args.max_epoch
+  ep_log_interval = args.ep_log_interval
+  lrn_rate = args.lrn_rate
  
   loss_func = T.nn.CrossEntropyLoss()  # apply log-softmax()
   # optimizer = T.optim.SGD(net.parameters(), lr=lrn_rate)
