@@ -34,11 +34,11 @@ The code will then capture the buffer and write the exact bytes to the `test.log
 Upon inspection, one will see the arguments embedded within the bytes.
 
 ## Overview of Steps
-    1. cd into "simple_c_example"
-    2. make
-    3. cd ..
-    4. make
-    5. make run
+    1. `cd into simple_c_example/`
+    2. `make`
+    3. `cd ..`
+    4. `make`
+    5. `make run` (if you are in the docker image, you run `make docker`)
 
 
 ## Objdump Parser

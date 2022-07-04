@@ -55,7 +55,7 @@ Below  we will walk a user through how to install the docker image on their mach
 We assume that the user has docker installed.
 
 1. Clone DynamoRIO in the root of this reposoitory(see second paragraph of this section for version recomendations).
-2. `docker build -t vca .` This step builds the docker image using the build script our repository's home directory. The build requires at least `8Gb` of free space. This step compiles dynamorio and installs all the python dependencies. Also, the compiling of dynamorio will take all cores. If that is an issuem, you can change the `make -j` setting in the docker script to what you would like.
+2. `docker build -t vca .` This step builds the docker image using the build script our repository's home directory. The build requires at least `8Gb` of free space. This step compiles dynamorio and installs all the python dependencies. Also, the compiling of dynamorio will take all cores. If that is an issue, you can change the `make -j` setting in the docker script to what you would like.
 3. `docker run -itd vca ` This command creates a container for the image we have just created after running the first command.
 4. `docker exec -it <Name of container> /bin/bash ` This command will allow the user to enter the container and execute the code. You can get the name of a currently active container by running, `docker ps `. Upon entering the command, you will now be able to execute all code with little issue. 
  

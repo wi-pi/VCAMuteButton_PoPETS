@@ -38,9 +38,7 @@ RUN apt-get update && apt-get -y install \
     vim
 
 # Let us add some heavy dependency
-RUN cd /home/dynamorio && mkdir build && cd build; cmake -DCMAKE_BUILD_TYPE=DEBUG \
-    -DCMAKE_C_FLAGS_DEBUG="-g -O0" \
-    -DCMAKE_CXX_FLAGS_DEBUG="-g -O0"  ..; make -j
+RUN cd /home/dynamorio && mkdir build && cd build; cmake ..; make -j
 
 ENV DYANAMO /home/dynamorio/build
 
