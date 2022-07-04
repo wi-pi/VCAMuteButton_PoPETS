@@ -43,6 +43,22 @@ Windows has a slightly different process, to access instructions for the same pr
 The virtual environment will create a `Mute_Button` folder which will be about `2 GBs`.
 
 
+## Docker Setup
+
+We also offer docker as an alternative method for executing our code base.
+Those who wish to use the docker be warned that the image will be `8Gb`.
+You will need to download Dynamorio, you can do that with ` `.
+
+### Steps
+Below  we will walk a user through how to install the docker image on their machine.
+We assume that the user has docker installed.
+
+1. `docker build -t vca .` This step builds the docker image using the build script our repository's home directory. The build requires at least `8Gb` of free space. This step compiles dynamorio and installs all the python dependencies. Also, the compiling of dynamorio will take all cores. If that is an issuem, you can change the `make -j` setting in the docker script to what you would like.
+2. `docker run -itd vca ` This command creates a container for the image we have just created after running the first command.
+3. `docker exec -it <Name of container> /bin/bash ` This command will allow the user to enter the container and execute the code. You can get the name of a currently active container by running, `docker ps `. Upon entering the command, you will now be able to execute all code with little issue. 
+ 
+ 
+
 ## Componets
 Here is a brief description of the subdirectories in this repository.
 

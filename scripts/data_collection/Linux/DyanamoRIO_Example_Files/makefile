@@ -14,12 +14,16 @@ DRWRAP=$(INSTALL_LOCATION)/ext/lib64/release/libdrwrap.so $(INSTALL_LOCATION)/ex
 DRUTILS=$(INSTALL_LOCATION)/ext/lib64/release/libdrutil.so $(INSTALL_LOCATION)/ext/lib64/release/libdrutil_static.a $(INSTALL_LOCATION)/ext/lib64/release/libdrutil.so.debug
 DRUTILS=$(INSTALL_LOCATION)/ext/lib64/release/libdrutil.so $(INSTALL_LOCATION)/ext/lib64/release/libdrutil_static.a $(INSTALL_LOCATION)/ext/lib64/release/libdrutil.so.debug
 
-NSS_INCLUDE310=$(INSTALL_LOCATION)/tutorials/software/nss-3.10/include
-NSS_INCLUDE=/usr/include/nss
-NSPR_INCLUDE= /usr/include/nspr
+
 TEST_LIB_INCLUDE=simple_c_example/
 
 all:
-	g++ -fpermissive -fPIC -shared -lgcc -w -DLINUX -DX86_64 -I$(DYNAMORIO_INCLUDE) -I$(DYNAMORIO_INCLUDE2) -I$(DYNAMORIO_INCLUDE3) -I$(DYNAMORIO_INCLUDE4) -I$(NSPR_INCLUDE) -I$(NSS_INCLUDE) -I$(TEST_LIB_INCLUDE) -o a.out simple_example.c $(DRREG) $(DRMGR) $(DRWRAP) $(DRUTILS) 
+	g++ -fpermissive -fPIC -shared -lgcc -w -DLINUX -DX86_64 -I$(DYNAMORIO_INCLUDE) -I$(DYNAMORIO_INCLUDE2) -I$(DYNAMORIO_INCLUDE3) -I$(DYNAMORIO_INCLUDE4) -I$(TEST_LIB_INCLUDE) -o a.out simple_example.c $(DRREG) $(DRMGR) $(DRWRAP) $(DRUTILS) 
 run:
 	$(DYNAMORIO_HOME)/bin64/drrun -nocheck -verbose -c64 a.out -- $(PATH_TO_EXECUTABLE)
+
+docker:
+	$(DYNAMORIO_HOME)/bin64/drrun -xarch_root -nocheck -verbose -c64 a.out -- $(PATH_TO_EXECUTABLE)
+
+debug_docker:
+	gdb --args /home/dynamorio/build/bin64/drrun -xarch_root -nocheck -verbose -c64 a.out -- simple_c_example/out.o

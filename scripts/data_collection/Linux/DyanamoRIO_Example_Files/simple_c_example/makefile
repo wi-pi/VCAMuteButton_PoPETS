@@ -4,6 +4,8 @@ all:
 	gcc -shared -Wl,-soname,ec_lib.so -o ec_lib.so ec_lib.o
 	gcc -I. -g -o a.out -c dr_showcase.c
 	gcc a.out -Wl,--export-dynamic -Wall -pedantic -Werror -Wextra  -ldl -L. -lec_lib -o out.o
+	cp out.o  ..
+	cp ec_lib.so ..
 
 clean:
 	rm *.a
