@@ -47,15 +47,17 @@ The virtual environment will create a `Mute_Button` folder which will be about `
 
 We also offer docker as an alternative method for executing our code base.
 Those who wish to use the docker be warned that the image will be `8Gb`.
-You will need to download Dynamorio, you can do that with ` `.
+
+You will need to download Dynamorio, I recommend [this version](https://github.com/jweezy24/dynamorio). The reason why we do not recommend the current release is that there seems to be version specific bug that causes a crash within the software. We were able to find the bug and offer a temporary solution. This seems to be related to docker as when tested outside of docker the release version works as intended. We currently have an [open github issue](https://github.com/DynamoRIO/dynamorio/issues/5554) addressing the matter.
 
 ### Steps
 Below  we will walk a user through how to install the docker image on their machine.
 We assume that the user has docker installed.
 
-1. `docker build -t vca .` This step builds the docker image using the build script our repository's home directory. The build requires at least `8Gb` of free space. This step compiles dynamorio and installs all the python dependencies. Also, the compiling of dynamorio will take all cores. If that is an issuem, you can change the `make -j` setting in the docker script to what you would like.
-2. `docker run -itd vca ` This command creates a container for the image we have just created after running the first command.
-3. `docker exec -it <Name of container> /bin/bash ` This command will allow the user to enter the container and execute the code. You can get the name of a currently active container by running, `docker ps `. Upon entering the command, you will now be able to execute all code with little issue. 
+1. Clone DynamoRIO in the root of this reposoitory(see second paragraph of this section for version recomendations).
+2. `docker build -t vca .` This step builds the docker image using the build script our repository's home directory. The build requires at least `8Gb` of free space. This step compiles dynamorio and installs all the python dependencies. Also, the compiling of dynamorio will take all cores. If that is an issuem, you can change the `make -j` setting in the docker script to what you would like.
+3. `docker run -itd vca ` This command creates a container for the image we have just created after running the first command.
+4. `docker exec -it <Name of container> /bin/bash ` This command will allow the user to enter the container and execute the code. You can get the name of a currently active container by running, `docker ps `. Upon entering the command, you will now be able to execute all code with little issue. 
  
  
 
