@@ -6,7 +6,7 @@ matplotlib
 pyaudio
 pydub
 librosa
-numpy
+numpy==1.22
 requests
 pandas
 scipy

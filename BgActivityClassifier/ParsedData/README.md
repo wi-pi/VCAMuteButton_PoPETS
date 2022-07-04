@@ -1,3 +1,3 @@
 # ParsedData
 
-parsed source data in .pkl format, ready for use in Classification.py training
+parsed source data in .pkl format, ready for use in classification_final.py training

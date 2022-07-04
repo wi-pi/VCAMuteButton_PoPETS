@@ -20,7 +20,7 @@ To install pytorch, please use `conda install pytorch torchvision -c pytorch`.
 
 ### Python file explanation
 
-- `ParseSourceData/data_parsing_win#.py` parse raw data from our collected dataset into window size = n
+- `ParseSourceData/data_parsing_final.py` parse raw data from our collected dataset into window size = n
 - `classification_final.py` takes parsed pickle data files, perform training and testing.
 
 

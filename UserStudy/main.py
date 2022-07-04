@@ -1,12 +1,16 @@
 import pandas as pd
 import re
 import sys
+import os
 import numpy as np
 from scipy.optimize import fsolve
 # from mpmath import cot,pi
 import math
 import matplotlib.pyplot as plt
 import seaborn as sns
+
+if not os.path.isdir("./Figures"):
+    os.mkdir("Figures")
 
 
 def read_survey_file(survey_file):
@@ -163,7 +167,7 @@ def generic_plot(response, xlabel, ylabel, filename):
     sns.despine()
     plt.savefig("Figures/" + filename,
                 bbox_inches='tight')
-    plt.show()
+    # plt.show()
 
     fig = plt.figure()
     size = fig.get_size_inches()  # size in pixels
