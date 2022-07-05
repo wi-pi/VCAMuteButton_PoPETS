@@ -24,5 +24,5 @@ An example command is,
 Currently our docker image does not support videos being played.
 The reason being is that all operating systems need to interface with the container differently which limits how we can generalize the container interfacing.
 If the user would like to run our script the would need to install [x11docker](https://github.com/mviereck/x11docker).
-This wrapper is able to connect a container with a machine's interfaces.
+This wrapper is able to connect a container with a machine's interfaces that will only work on Linux.
 If the reader would like to do this, they would need to also install `vlc` within the container.  
