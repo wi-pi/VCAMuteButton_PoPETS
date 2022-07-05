@@ -6,7 +6,7 @@ BgActivityClassifier/*.pkl
 BgActivityClassifier/ParseSourceData/*.pkl
 
 #Video and python environment ignores
-Mute_Button/*
+Mute_Button
 *.mp4
 *.mkv
 *.flac

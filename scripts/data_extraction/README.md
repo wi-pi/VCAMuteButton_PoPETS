@@ -6,6 +6,6 @@ The timestamps from Webex are in a different timezone than the timestamps gather
 
 # Run the code
 
-First, as with all of the python scripts, you have to install all of the packages.
-To do that, you run the command `pip3 install -r requirements.txt` in the main directory of the repository.
-To run the code enter the command, `python3 debug_file_parser.py <path to raw data> <path to timestamps> <path to results file>`
+To run the code enter the command, `python3 debug_file_parser.py <path to raw data> <path to timestamps> <path to results file>`.
+
+An example command is, `python3 debug_file_parser.py ../../datasets/data_example2/example_xdbg_log.txt ../../datasets/data_example3/timestamp_example.txt ../../datasets/data_example1/25cm_tmp.txt`
