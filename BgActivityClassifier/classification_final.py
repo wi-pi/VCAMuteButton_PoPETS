@@ -13,12 +13,16 @@ from sklearn.metrics import accuracy_score
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--gpu", help="This flag will enable GPU support.", action='store_true')
+parser.add_argument("--show_verbose", help = "This will show verbose outputs.", action = 'store_true')
 parser.add_argument("--window_size", help="Set the window size.",type=int)
 parser.add_argument("--max_epoch", help="Set max epoch to train. Default value is 700.",nargs='?',const=700, type=int,default=700)
 parser.add_argument("--ep_log_interval", help="Set how frequently a user would like to see the log output. Default value is 100.",nargs='?',const=100, type=int,default=100)
 parser.add_argument("--lrn_rate", help="Set learning rate to train. Default value is 0.001.",const=0.001, nargs='?', type=float,default=0.001)
 args = parser.parse_args()
 window_size = args.window_size
+if not os.path.isfile(f'ParsedData/new_data_10cm_{window_size}_final.pkl'):
+  print(f'Pickle files for window size {window_size} not found in ParsedData folder. Please run scripts in ParseSourceData Folder and add the generated files into the folder.')
+  exit(-1)
 
 if not os.path.exists("./Log"):
   os.mkdir("./Log")
@@ -293,41 +297,42 @@ def main():
       # evaluate model accuracy
       # print(confusion_matrix(true_y,predict_y))
       # "friends" 0 "Office"  1 "street_music" 2 "jackhammer"3 "car_horn"  4
-      acc_train = accuracy(model, train_ds, 0)  # item-by-item
-      print("Accuracy on training data of class classical_music = %0.4f" % acc_train)
-      acc_test = accuracy(model, OVA_testset_vald1,0)  # en masse
-      # acc_test = accuracy_quick(net, test_ds)  # en masse
-      print("Accuracy on validation data of class classical_music = %0.4f" % acc_test)
-      # -----------------------------------------------------------
-      acc_train = accuracy(model, train_ds,1)  # item-by-item
-      print("Accuracy on training data of class cooking or eating = %0.4f" % acc_train)
-      acc_test = accuracy(model, OVA_testset_vald1,1)  # en masse
-      # acc_test = accuracy_quick(net, test_ds)  # en masse
-      print("Accuracy on OVA_testset_vald1 data of class cooking or eating = %0.4f" % acc_test)
-      # -----------------------------------------------------------  
-      acc_train = accuracy(model, train_ds, 2)  # item-by-item
-      print("Accuracy on training data of class crowd_talking = %0.4f" % acc_train)
-      acc_test = accuracy(model, OVA_testset_vald1,2)  # en masse
-      # acc_test = accuracy_quick(net, test_ds)  # en masse
-      print("Accuracy on OVA_testset_vald1 data of class crowd_talking = %0.4f" % acc_test)
-      # -----------------------------------------------------------  
-      acc_train = accuracy(model, train_ds, 3)  # item-by-item
-      print("Accuracy on training data of class dog_barking = %0.4f" % acc_train)
-      acc_test = accuracy(model, OVA_testset_vald1,3)  # en masse
-      # acc_test = accuracy_quick(net, test_ds)  # en masse
-      print("Accuracy on OVA_testset_vald1 data of class dog_barking = %0.4f" % acc_test)
-      # -----------------------------------------------------------  
-      acc_train = accuracy(model, train_ds, 4)  # item-by-item
-      print("Accuracy on training data of class keyboard = %0.4f" % acc_train)
-      acc_test = accuracy(model, OVA_testset_vald1,4)  # en masse
-      # acc_test = accuracy_quick(net, test_ds)  # en masse
-      print("Accuracy on OVA_testset_vald1 data of class keyboard = %0.4f" % acc_test)
-      # # -----------------------------------------------------------
-      acc_train = accuracy(model, train_ds, 5)  # item-by-item
-      print("Accuracy on training data of class vaccume or cleaning = %0.4f" % acc_train)
-      acc_test = accuracy(model, OVA_testset_vald1,5)  # en masse
-      # acc_test = accuracy_quick(net, test_ds)  # en masse
-      print("Accuracy on OVA_testset_vald1 data of class vaccume or cleaning = %0.4f" % acc_test)
+      if args.show_verbose:
+        acc_train = accuracy(model, train_ds, 0)  # item-by-item
+        print("Accuracy on training data of class classical_music = %0.4f" % acc_train)
+        acc_test = accuracy(model, OVA_testset_vald1,0)  # en masse
+        # acc_test = accuracy_quick(net, test_ds)  # en masse
+        print("Accuracy on validation data of class classical_music = %0.4f" % acc_test)
+        # -----------------------------------------------------------
+        acc_train = accuracy(model, train_ds,1)  # item-by-item
+        print("Accuracy on training data of class cooking or eating = %0.4f" % acc_train)
+        acc_test = accuracy(model, OVA_testset_vald1,1)  # en masse
+        # acc_test = accuracy_quick(net, test_ds)  # en masse
+        print("Accuracy on OVA_testset_vald1 data of class cooking or eating = %0.4f" % acc_test)
+        # -----------------------------------------------------------  
+        acc_train = accuracy(model, train_ds, 2)  # item-by-item
+        print("Accuracy on training data of class crowd_talking = %0.4f" % acc_train)
+        acc_test = accuracy(model, OVA_testset_vald1,2)  # en masse
+        # acc_test = accuracy_quick(net, test_ds)  # en masse
+        print("Accuracy on OVA_testset_vald1 data of class crowd_talking = %0.4f" % acc_test)
+        # -----------------------------------------------------------  
+        acc_train = accuracy(model, train_ds, 3)  # item-by-item
+        print("Accuracy on training data of class dog_barking = %0.4f" % acc_train)
+        acc_test = accuracy(model, OVA_testset_vald1,3)  # en masse
+        # acc_test = accuracy_quick(net, test_ds)  # en masse
+        print("Accuracy on OVA_testset_vald1 data of class dog_barking = %0.4f" % acc_test)
+        # -----------------------------------------------------------  
+        acc_train = accuracy(model, train_ds, 4)  # item-by-item
+        print("Accuracy on training data of class keyboard = %0.4f" % acc_train)
+        acc_test = accuracy(model, OVA_testset_vald1,4)  # en masse
+        # acc_test = accuracy_quick(net, test_ds)  # en masse
+        print("Accuracy on OVA_testset_vald1 data of class keyboard = %0.4f" % acc_test)
+        # # -----------------------------------------------------------
+        acc_train = accuracy(model, train_ds, 5)  # item-by-item
+        print("Accuracy on training data of class vaccume or cleaning = %0.4f" % acc_train)
+        acc_test = accuracy(model, OVA_testset_vald1,5)  # en masse
+        # acc_test = accuracy_quick(net, test_ds)  # en masse
+        print("Accuracy on OVA_testset_vald1 data of class vaccume or cleaning = %0.4f" % acc_test)
       # -----------------------------------------------------------  
       ##----------------------------------------------------------------
       
@@ -424,22 +429,26 @@ def main():
 
   # true_y, predict_y = accuracy_matrix(net,OVA_testset_vald1)
   # print(confusion_matrix(true_y,predict_y))
-  print("OVA_testset_vald1")
+  
   true_y, predict_y = accuracy_matrix(net,OVA_testset_vald1)
   vald1cm = confusion_matrix(true_y,predict_y, normalize = 'true')
-  print(confusion_matrix(true_y,predict_y, normalize = 'true'))
+  if args.show_verbose:
+    print("OVA_testset_vald1")
+    print(confusion_matrix(true_y,predict_y, normalize = 'true'))
   # # data_ova_100cm
   # OVA_1mand18_Testset
   true_y, predict_y = accuracy_matrix(net,OVA_testset_eval1)
-  print("OVA_testset_eval1")
   eval1cm = confusion_matrix(true_y,predict_y, normalize = 'true')
-  print(confusion_matrix(true_y,predict_y, normalize = 'true'))
+  if args.show_verbose:
+    print("OVA_testset_eval1")
+    print(confusion_matrix(true_y,predict_y, normalize = 'true'))
   # # results-11-14-21_ova
   # ova_081215_testset2
   true_y, predict_y = accuracy_matrix(net,OVA_testset_eval2_ds)
-  print("OVA_testset_eval2_ds")
   eval2cm = confusion_matrix(true_y,predict_y, normalize = 'true')
-  print(confusion_matrix(true_y,predict_y, normalize = 'true'))
+  if args.show_verbose:
+    print("OVA_testset_eval2_ds")
+    print(confusion_matrix(true_y,predict_y, normalize = 'true'))
   savefile = [vald1cm,eval1cm,eval2cm]
   # save for confusion matrix
   
