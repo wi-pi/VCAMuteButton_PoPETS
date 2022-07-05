@@ -11,7 +11,7 @@ COPY . /home
 
 SHELL ["/bin/bash", "-c"]
 
-RUN apt-get update && apt-get -y install \
+RUN apt update && apt-get -y install \
     build-essential \
     binutils\
     perl\

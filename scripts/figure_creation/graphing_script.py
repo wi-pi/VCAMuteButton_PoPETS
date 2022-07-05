@@ -161,7 +161,7 @@ def compute_power_db_min_max(x, Fs, mins, maxs, win_len_sec=0.2, power_ref=10 **
 
 def plot_data(data,file_name):
     plt.rcParams['grid.color'] = (0.5, 0.5, 0.5, 0.2)
-    # fig = plt.figure(figsize=(8,6))
+    fig = plt.figure(figsize=(8,6))
     # font = {'family' : 'normal',
     #     'size'   : 16}
     # plt.rc('font', **font)
