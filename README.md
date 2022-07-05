@@ -2,6 +2,15 @@
 
 This repository contains the source code and sample data for the PETS'22 paper by Yucheng Yang, Jack West, George K. Thiruvathukal, Neil Klingensmith, and Kassen Fawaz.
 
+## Componets
+Here is a brief description of the subdirectories in this repository.
+
+- `UserStudy`: full user study analysis script and user study results of all valid participants, coded answers by two researchers, and user study questionnaire details.
+- `BgActivityClassifier`: python scripts for training our background activity classifiers.
+- `dataset`: extracted sample data from Webex outgoing traffic.
+- `scripts`: traffic interception scripts used for capturing telemetric packets from Webex outgoing traffic.
+
+
 
 ### Dependencies
 
@@ -13,7 +22,9 @@ Tools needed to run the code:
     - Python3
     - make 
     - portaudio19-dev
+    - vlc
 
+All ubuntu packages are located within the `dockerfile` script.
 
 ## Virtual Environment Setup
 
@@ -48,7 +59,7 @@ The virtual environment will create a `Mute_Button` folder which will be about `
 We also offer docker as an alternative method for executing our code base.
 Those who wish to use the docker be warned that the image will be `9Gb`.
 
-You will need to download Dynamorio, I recommend [this version](https://github.com/jweezy24/dynamorio). The reason why we do not recommend the current release is that there seems to be version specific bug that causes a crash within the software. We were able to find the bug and offer a temporary solution. This seems to be related to docker as when tested outside of docker the release version works as intended. We currently have an [open github issue](https://github.com/DynamoRIO/dynamorio/issues/5554) addressing the matter.
+You will need to download Dynamorio at the root of this repository, I recommend [this version](https://github.com/jweezy24/dynamorio). The reason why we do not recommend the current release is that there seems to be version specific bug that causes a crash within the software that, we believe, is related to Docker. We were able to find the bug and fix it with the version we recommend. We currently have an [open github issue](https://github.com/DynamoRIO/dynamorio/issues/5554) addressing the matter.
 
 ### Steps
 Below  we will walk a user through how to install the docker image on their machine.
@@ -65,19 +76,10 @@ We assume that the user has docker installed.
  The `scripts/data_collection/Windows/play_video_script.py` will not work within the docker image.
  This is because the docker image will need to have access to a machine's audio interface.
  Each machine is different and will require the local user to set up a connection with the docker container.
- We apologize for not including the script's functionality within the docker script.  
+ We apologize for not including the script's functionality within the docker container.  
 
 
 
- 
-
-## Componets
-Here is a brief description of the subdirectories in this repository.
-
-- `UserStudy`: full user study analysis script and user study results of all valid participants, coded answers by two researchers, and user study questionnaire details.
-- `BgActivityClassifier`: python scripts for training our background activity classifiers.
-- `dataset`: extracted sample data from Webex outgoing traffic.
-- `scripts`: traffic interception scripts used for capturing telemetric packets from Webex outgoing traffic.
 
 
 ### Authors 
