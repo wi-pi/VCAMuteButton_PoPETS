@@ -162,13 +162,13 @@ def compute_power_db_min_max(x, Fs, mins, maxs, win_len_sec=0.2, power_ref=10 **
 def plot_data(data,file_name):
     plt.rcParams['grid.color'] = (0.5, 0.5, 0.5, 0.2)
     fig = plt.figure(figsize=(8,6))
-    font = {'family' : 'normal',
-        'size'   : 16}
-    plt.rc('font', **font)
-    matplotlib.rcParams['legend.fontsize'] = 14
-    matplotlib.rcParams['ps.useafm'] = True
-    matplotlib.rcParams['pdf.use14corefonts'] = True
-    matplotlib.rcParams['text.usetex'] = True
+    # font = {'family' : 'normal',
+    #     'size'   : 16}
+    # plt.rc('font', **font)
+    # matplotlib.rcParams['legend.fontsize'] = 14
+    # matplotlib.rcParams['ps.useafm'] = True
+    # matplotlib.rcParams['pdf.use14corefonts'] = True
+    # matplotlib.rcParams['text.usetex'] = True
 
     
     ax = Axes3D(fig)
@@ -203,10 +203,10 @@ def plot_data(data,file_name):
 
 def plot_data_2d(data,path):
     fig = plt.figure(frameon=False,figsize=(8,6))
-    font = {'family' : 'normal',
-        'size'   : 18}
-    plt.rc('font', **font)
-    plt.rc('text', usetex=True)
+    # font = {'family' : 'normal',
+    #     'size'   : 18}
+    # plt.rc('font', **font)
+    # plt.rc('text', usetex=True)
     plt.title("Visualization of the Evaluation Set") 
     handels = []
     texts = []
@@ -356,12 +356,12 @@ def correlation_figures(all_data,name):
     corr_coeffs = []
 
     fig = plt.figure(figsize=(8,6))
-    font = {'family' : 'normal',
-        'size'   : 22}
-    plt.rc('font', **font)
-    matplotlib.rcParams['ps.useafm'] = True
-    matplotlib.rcParams['pdf.use14corefonts'] = True
-    matplotlib.rcParams['text.usetex'] = True
+    # font = {'family' : 'normal',
+    #     'size'   : 22}
+    # plt.rc('font', **font)
+    # matplotlib.rcParams['ps.useafm'] = True
+    # matplotlib.rcParams['pdf.use14corefonts'] = True
+    # matplotlib.rcParams['text.usetex'] = True
 
     all_points_means = []
     all_points_mi = []
@@ -473,10 +473,10 @@ def correlate_all_wavs(all_data):
     corr_coeffs = []
 
     fig = plt.figure(figsize=(8,6))
-    font = {'family' : 'normal',
-        'size'   : 18}
-    plt.rc('font', **font)
-    plt.rc('text', usetex=True)
+    # font = {'family' : 'normal',
+    #     'size'   : 18}
+    # plt.rc('font', **font)
+    # plt.rc('text', usetex=True)
     plt.title("Error Plot of Power Compared to Gain") 
 
     all_points_means = []

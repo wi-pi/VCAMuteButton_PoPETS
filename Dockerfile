@@ -11,7 +11,7 @@ COPY . /home
 
 SHELL ["/bin/bash", "-c"]
 
-RUN apt-get update && apt-get -y install \
+RUN apt update && apt-get -y install \
     build-essential \
     binutils\
     perl\
@@ -32,9 +32,8 @@ RUN apt-get update && apt-get -y install \
     libunwind-dev\ 
     libsnappy-dev\ 
     liblz4-dev\
+    libsndfile1-dev\
     ca-certificates\
-    texlive-fonts-recommended\
-    texlive-fonts-extra\
     vim
 
 # Let us add some heavy dependency

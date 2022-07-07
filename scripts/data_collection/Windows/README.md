@@ -17,3 +17,12 @@ Once you have installed everything, you can run the script as so,
 An example command is,
 
 ``` python3 play_video_script.py --log_file ./log.txt --videos_dir  ../../../datasets/video_data_example --seen_before ./played_vids.txt```
+
+
+# Docker Specifc Information
+
+Currently our docker image does not support videos being played.
+The reason being is that all operating systems need to interface with the container differently which limits how we can generalize the container interfacing.
+If the user would like to run our script the would need to install [x11docker](https://github.com/mviereck/x11docker).
+This wrapper is able to connect a container with a machine's interfaces that will only work on Linux.
+If the reader would like to do this, they would need to also install `vlc` within the container.  
