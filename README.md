@@ -48,7 +48,7 @@ The virtual environment will create a `Mute_Button` folder which will be about `
 We also offer docker as an alternative method for executing our code base.
 Those who wish to use the docker be warned that the image will be `8Gb`.
 
-You will need to download Dynamorio, I recommend [this version](https://github.com/jweezy24/dynamorio). The reason why we do not recommend the current release is that there seems to be version specific bug that causes a crash within the software. We were able to find the bug and offer a temporary solution. This seems to be related to docker as when tested outside of docker the release version works as intended. We currently have an [open github issue](https://github.com/DynamoRIO/dynamorio/issues/5554) addressing the matter.
+You will need to clone [Dynamorio](https://github.com/DynamoRIO/dynamorio) into the root of this directory. 
 
 ### Steps
 Below  we will walk a user through how to install the docker image on their machine.
